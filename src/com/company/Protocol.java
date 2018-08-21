@@ -38,8 +38,10 @@ public class Protocol {
         return error_code;
     }
 
+
     public void setByteArray(String information){
-        byte[] information_byte = information.getBytes();
+        byte[] information_byte = new byte[information.length()];
+        for(int i = 0; i < information_byte.length; i++) information_byte[i] = (byte)information.charAt(i);
 
         id = information_byte[0];
 
@@ -65,7 +67,7 @@ public class Protocol {
 
                 read++;
                 for (int c = 0; c < 2; c++){
-                    active_field[c] = information_byte[c];
+                    active_field[c] = information_byte[read];
                     read++;
                 }
 
@@ -84,5 +86,7 @@ public class Protocol {
                 error_code = information_byte[2];
                 break;
         }
+
+        System.out.println("Test");
     }
 }
