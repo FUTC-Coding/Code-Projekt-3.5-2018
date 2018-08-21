@@ -8,8 +8,10 @@ public class Connection {
     private PrintWriter output;
     private int port = 3141;
 
+    //Constructor uses default port (3141) and url as a variable
+
     public Connection(InetAddress url) {
-        try {
+            try {
             socket = new Socket(url, this.port);
             System.out.println("Socket created! ");
 
@@ -24,11 +26,17 @@ public class Connection {
         }
         System.out.println("Connected to Server! ");
     }
+
+    //message needs to be converted to a byte array before sending
+
     public void sendMessage (byte[] msg){
         output.print(new String(msg));
         output.flush();
         System.out.println("Message sent!");
     }
+
+    //messages are received as strings, translation in the protocol class
+
     public String receiveMessage(){
         char[] charBuffer = new char[120];
         String info;
