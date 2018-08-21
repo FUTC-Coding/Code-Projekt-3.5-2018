@@ -5,7 +5,7 @@ public class Board {
     private byte[][] cells;
     private double [][] cellValues;
     private byte[] activeField;
-    private boolean[][] activeCells = new boolean[8][8];
+    private boolean[][] allowedCells = new boolean[9][9];
 
     public Board(byte[][] cells, byte[] activeField, byte[][] fields){
         this.cells = cells;
@@ -19,7 +19,7 @@ public class Board {
             for(int i2 = 0;i2<=8;i2++){
 
                 if(this.fields[(int)Math.ceil((i1+1d)/3d)][(int)Math.ceil(((i2+1d)/3d))]!=0){   //checks if field of the cell is owned by someone by dividing the cells array and rounding up giving the coordinates of the field containing said cell, please dont change this line...
-                    activeCells[i1][i2] = false;        //sets the cell to disallowed
+                    allowedCells[i1][i2] = false;        //sets the cell to disallowed
                 }
             }
         }
@@ -31,7 +31,7 @@ public class Board {
             for (int i1 = 0; i1<=2;i1++) {
                 for (int i2 = 0; i2 <= 2; i2++) {
                     if(cells[i1][i2]==0){               //checking whether cell is already occupied
-                        this.activeCells[this.activeField[0] * 3 + i1][this.activeField[1] * 3 + i2] = true;
+                        this.allowedCells[this.activeField[0] * 3 + i1][this.activeField[1] * 3 + i2] = true;
                     }
                 }
             }
@@ -39,8 +39,8 @@ public class Board {
         else{                                           //the field is already won or fully occupied
             for (int i1 = 0; i1<=8;i1++) {
                 for (int i2 = 0; i2 <=8; i2++) {        //for loop through the whole array
-                    if(cells[i1][i2]==0){               //checking wether cell is already occupied
-                        this.activeCells[i1][i2] = true;
+                    if(cells[i1][i2]==0){               //checking whether cell is already occupied
+                        this.allowedCells[i1][i2] = true;
                     }
                 }
             }
