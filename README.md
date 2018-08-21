@@ -1,13 +1,24 @@
 # Code-Projekt-3.5-2018
 
-<<<<<<< HEAD
-Hello World!
-=======
-<<<<<<< HEAD
-Hello Weed!
-=======
-Hallo Welt!
+id | Info Message | richtung
+---|---------|---------
+'I' 0xFF| | server -> client
+client_id | byte[1]	0xFF |
+big_board | byte`[3][3]` 0xFF |
+cells |byte`[9][9]` 0xFF|
+active_field |byte [2] 0xFF|
 
-test
->>>>>>> 6ccab681013fff6ac476994f21c3b90b898282c1
->>>>>>> 42411bfa7f16af628e9fd30c188dbef45b23c5a2
+id | Move Messages | richtung
+---|--------------|---------
+'M' 0xFF Move Message| | client -> server
+coordinates | byte[2] 0xFF |
+
+id | Win message | richtung
+---|--------------|---------
+'W' Win Message | | server -> client
+client_id | byte[1] 0xFF | 
+
+id | Error Message | richtung
+---|--------------|---------
+'E' 0xFF | | server -> client
+error_code | byte[1] 0xFF |
