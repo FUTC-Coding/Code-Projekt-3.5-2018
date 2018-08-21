@@ -21,4 +21,6 @@ client_id | byte[1] 0xFF |
 id | Error Message | richtung
 ---|--------------|---------
 'E' 0xFF | | server -> client
+
 error_code | byte[1] 0xFF |
+
