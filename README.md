@@ -1,7 +1,5 @@
 # Code-Projekt-3.5-2018
 
-
-
 id | Info Message | richtung
 ---|---------|---------
 'I' 0xFF| | server -> client
@@ -23,8 +21,5 @@ client_id | byte[1] 0xFF |
 id | Error Message | richtung
 ---|--------------|---------
 'E' 0xFF | | server -> client
-<<<<<<< HEAD
-error_code | byte[1] 0xFF |
-
-
+error_code | byte[1] 0xFF | 
 
