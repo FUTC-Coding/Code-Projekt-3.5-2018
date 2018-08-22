@@ -7,13 +7,20 @@ public class Board {
     private byte[] activeField;
     private boolean[][] allowedCells = new boolean[9][9];
 
+    public boolean[][] getAllowedCells(){
+        return allowedCells;
+    }
+
     public Board(byte[][] cells, byte[] activeField, byte[][] fields){
         this.cells = cells;
         this.activeField = activeField;
         this.fields = fields;
     }
+    public void checkRows(byte[][] coordinates, byte player){        //checks if a win for said player in this field is possible
+        int cellNumber;
+    }
 
-    private void eliminateWonFields(){                  //Eliminates moves that would play in any field that is already won
+    public void eliminateWonFields(){                   //Eliminates moves that would play in any field that is already won
                                                         //only needed if there is no active field (field already won or lost)
         for(int i1 = 0; i1<=8;i1++){
             for(int i2 = 0;i2<=8;i2++){
@@ -25,7 +32,7 @@ public class Board {
         }
 
     }
-    private void checkAllowedCells(){
+    public void checkAllowedCells(){
         //Search for active cells in cells[] by looking at activeField
         if (this.activeField[0]!=3){                    //the field isn`t won yet//this array is true for every cell the player is allowed to play
             for (int i1 = 0; i1<=2;i1++) {
