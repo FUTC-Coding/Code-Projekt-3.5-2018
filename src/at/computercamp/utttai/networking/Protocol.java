@@ -1,10 +1,11 @@
-package com.company;
+package at.computercamp.utttai.networking;
 
 import java.lang.String;
 
 public class Protocol {
 
     private int read;
+    private int winner = -1;
 
     private byte id;
     private byte client_id;
@@ -15,6 +16,7 @@ public class Protocol {
     private byte[] coordinates = new byte[2];
 
     private byte error_code;
+
 
     public byte getId(){
         return  id;
@@ -38,6 +40,9 @@ public class Protocol {
         return error_code;
     }
 
+    public int getWinner() {
+        return winner;
+    }
 
     public void setByteArray(String information){
         byte[] information_byte = new byte[information.length()];
@@ -75,6 +80,8 @@ public class Protocol {
 
             case 'W':
                 read = 2;
+                winner = information_byte[2];
+
                 for (int c = 0; c < 2; c++){
                     coordinates[c] = information_byte[read];
                     read++;

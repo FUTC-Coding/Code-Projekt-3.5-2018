@@ -1,4 +1,5 @@
-package com.company;
+package at.computercamp.utttai.networking;
+
 import java.net.*;
 import java.io.*;
 
@@ -11,7 +12,7 @@ public class Connection {
     //Constructor uses default port (3141) and url as a variable
 
     public Connection(InetAddress url) {
-            try {
+        try {
             socket = new Socket(url, this.port);
             System.out.println("Socket created! ");
 
