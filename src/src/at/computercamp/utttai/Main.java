@@ -17,7 +17,7 @@ public class Main {
         String incomingMsg;
         boolean gameFinished = false;
 
-        Board board = new Board();
+        Board board = new Board(protocol);
         //Starting Client
         try {
             //Create Connection to Server
@@ -31,7 +31,8 @@ public class Main {
                     //Add Function to get the winner
                 }
                 board.updateBoardFromProtocol(protocol);
-                System.out.println(protocol.getClient_id());
+
+
             }
 
 

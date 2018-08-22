@@ -82,11 +82,6 @@ public class Protocol {
                 read = 2;
                 winner = information_byte[2];
 
-                for (int c = 0; c < 2; c++){
-                    coordinates[c] = information_byte[read];
-                    read++;
-                }
-
                 break;
 
             case 'E':
@@ -95,5 +90,15 @@ public class Protocol {
         }
 
         System.out.println("Test");
+    }
+
+    public byte[] getMoveMessageByte(byte x, byte y) {
+        int i = 0;
+        byte[] moveMessage = new byte[4];
+        moveMessage[0]= 'M';
+        i++;
+        moveMessage[2] = x;
+        moveMessage[3] = y;
+        return moveMessage;
     }
 }

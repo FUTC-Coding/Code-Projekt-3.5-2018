@@ -43,5 +43,11 @@ public class Position {
             return true;
         return false;
     }
+
+    public  boolean isEmpty() {
+        if (getUsed() == 0)
+            return true;
+        return false;
+    }
 }
 

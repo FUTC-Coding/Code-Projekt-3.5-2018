@@ -1,6 +1,7 @@
 package at.computercamp.utttai.game;
 
 import at.computercamp.utttai.networking.Protocol;
+import javafx.geometry.Pos;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,7 @@ public class Board {
             for (int y = 0; y < 9; y++) {
                 Position position = new Position(x, y, protocol.getCells()[x][y]);
                 System.out.println(position.getX());
+                System.out.println(position.getUsed());
             }
         }
     }
@@ -39,6 +41,15 @@ public class Board {
     public Board copyToTemporaryBoard() {
         Board temporary = this;
         return temporary;
+    }
+
+    public ArrayList<Position> getEmptyPositions() {
+        ArrayList<Position> empty = new ArrayList<>();
+        for (Position p : positions) {
+            if (p.isEmpty())
+                empty.add(p);
+        }
+        return empty;
     }
 
 
