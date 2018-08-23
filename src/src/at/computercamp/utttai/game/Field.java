@@ -1,19 +1,16 @@
 package at.computercamp.utttai.game;
 
-public class Position {
+public class Field {
 
     private int x;
     private int y;
 
     private int used;
 
-    private Field parent;
-
-    public Position(int x, int y, int used, Field parent) {
+    public Field(int x, int y, int won) {
         this.x = x;
         this.y = y;
         this.used = used;
-        this.parent = parent;
     }
 
 
@@ -41,14 +38,12 @@ public class Position {
         this.y = y;
     }
 
-    public boolean isOwnCell(int clientId) {
+
+
+    public boolean isWon(int clientId) {
         if(getUsed() == clientId)
             return true;
         return false;
-    }
-
-    public Field getParent() {
-        return parent;
     }
 
     public  boolean isEmpty() {
@@ -56,5 +51,5 @@ public class Position {
             return true;
         return false;
     }
-}
 
+}
