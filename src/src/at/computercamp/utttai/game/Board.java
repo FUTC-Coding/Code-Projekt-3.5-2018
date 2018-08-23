@@ -8,6 +8,9 @@ import java.util.ArrayList;
 public class Board {
 
     private ArrayList<Position> positions = new ArrayList<>();
+    private int activeFieldX;
+    private int activeFieldY;
+    private int activePlayer;
 
 
     public Board() {
@@ -28,6 +31,9 @@ public class Board {
                 System.out.println(position.getUsed());
             }
         }
+        activeFieldX = protocol.getActive_field()[0];
+        activeFieldX = protocol.getActive_field()[1];
+        activePlayer = protocol.getClient_id();
     }
 
     public ArrayList<Position> getPositions() {
@@ -51,6 +57,34 @@ public class Board {
         }
         return empty;
     }
+
+    public ArrayList<Position> getAviablePositions() {
+        ArrayList<Position> aviable = new ArrayList<>();
+
+        return aviable;
+    }
+
+    public void move(int playerNr, int x, int y) {
+        for(Position p : positions) {
+            if(p.getX() == x && p.getY() == y) {
+                p.setUsed(playerNr);
+                togglePlayer();
+                return;
+            }
+        }
+
+        System.out.println("Position not found. Please try again");
+    }
+
+    public void preformMove(int x, int y) {
+
+    }
+
+    public void togglePlayer() {
+        activePlayer = 3 - activePlayer;
+    }
+
+
 
 
 }
