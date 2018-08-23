@@ -18,7 +18,7 @@ public class UCT {
     static Node findBestNodeWithUCT(Node node) {
         int parentVisit = node.getState().getVisitCount();
         return Collections.max(
-                node.getChildArray(),
+                node.getChildren(),
                 Comparator.comparing(c -> uctValue(parentVisit, c.getState().getWinScore(), c.getState().getVisitCount())));
     }
 }
