@@ -73,10 +73,21 @@ public class State {
     public List<State> getAllPossibleStates(){
         List<State> possibleStates = new ArrayList<>();
         List<Position> availablePositions = this.board.getEmptyPositions();
+        //TODO: use method giving possible positions according to rules
         availablePositions.forEach(p -> {
             State newState = new State(this.board);
             newState.setPlayerNo(3 - this.playerNo);
-            newState.getBoard().(newState)
+            newState.getBoard().move(newState.getPlayerNo(), p);
+            possibleStates.add(newState);
         });
+        return possibleStates;
+    }
+
+
+    void randomPlay() {
+        List<Position> availablePositions = this.board.getEmptyPositions();
+        int totalPossibilities = availablePositions.size();
+        int selectRandom = (int) (Math.random() * totalPossibilities);
+        this.board.move(this, availablePositions.get(selectRandom));
     }
 }
