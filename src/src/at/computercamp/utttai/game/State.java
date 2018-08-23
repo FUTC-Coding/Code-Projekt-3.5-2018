@@ -66,4 +66,17 @@ public class State {
             this.winScore += score;
     }
 
+    void togglePlayer() {
+        this.playerNo = 3 - this.playerNo;
+    }
+
+    public List<State> getAllPossibleStates(){
+        List<State> possibleStates = new ArrayList<>();
+        List<Position> availablePositions = this.board.getEmptyPositions();
+        availablePositions.forEach(p -> {
+            State newState = new State(this.board);
+            newState.setPlayerNo(3 - this.playerNo);
+            newState.getBoard().(newState)
+        });
+    }
 }
