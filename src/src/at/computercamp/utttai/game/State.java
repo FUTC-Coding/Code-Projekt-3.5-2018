@@ -49,7 +49,7 @@ public class State {
         this.visitCount = visitCount;
     }
 
-    double getWinScore() {
+    public double getWinScore() {
         return winScore;
     }
 
@@ -72,8 +72,7 @@ public class State {
 
     public List<State> getAllPossibleStates(){
         List<State> possibleStates = new ArrayList<>();
-        List<Position> availablePositions = this.board.getEmptyPositions();
-        //TODO: use method giving possible positions according to rules
+        List<Position> availablePositions = this.board.getAvailablePositions();
         availablePositions.forEach(p -> {
             State newState = new State(this.board);
             newState.setPlayerNo(3 - this.playerNo);
@@ -88,6 +87,6 @@ public class State {
         List<Position> availablePositions = this.board.getEmptyPositions();
         int totalPossibilities = availablePositions.size();
         int selectRandom = (int) (Math.random() * totalPossibilities);
-        this.board.move(this, availablePositions.get(selectRandom));
+        this.board.move(playerNo, availablePositions.get(selectRandom));
     }
 }
