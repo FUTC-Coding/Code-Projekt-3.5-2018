@@ -45,16 +45,16 @@ public class Position {
         if(getUsed() == clientId)
             return true;
         return false;
-    }
+        }
 
-    public Field getParent() {
+public Field getParent() {
         return parent;
-    }
+        }
 
-    public  boolean isEmpty() {
+public  boolean isEmpty() {
         if (getUsed() == 0)
-            return true;
+        return true;
         return false;
-    }
-}
+        }
+        }
 

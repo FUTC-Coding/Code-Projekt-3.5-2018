@@ -19,7 +19,9 @@ public class Board {
 
     }
 
-    public Board(Board board) { }
+    public Board(Board board) {
+        //TODO FInish Constructor
+    }
 
     public Board(Protocol protocol) {
 
@@ -85,20 +87,23 @@ public class Board {
         return empty;
     }
 
-    public ArrayList<Position> getAvailablePositions() {
+    public ArrayList<Position> getAviablePositions() {
         ArrayList<Position> aviable = new ArrayList<>();
+
         if(activeFieldX == 3 && activeFieldY == 3) {
             for (Position position : positions) {
-                if(position.getUsed() != 0) {
+                if(position.getUsed() == 0) {
                     aviable.add(position);
                 }
             }
             return aviable;
         }
 
+        System.out.println("Active Field" + activeFieldX);
 
         for (Position position : positions) {
             if (position.getParent().getX() == activeFieldX && position.getParent().getY() == activeFieldY && position.getUsed() == 0) {
+
                 aviable.add(position);
             }
         }
@@ -119,8 +124,7 @@ public class Board {
         int nextActiveX = position.getX() % 3;
         int nextActiveY = position.getY() % 3;
 
-        System.out.println(nextActiveX);
-        System.out.println(nextActiveY);
+
 
 
         if (getFieldByCoordinates(nextActiveX, nextActiveY).getUsed() != 0) {
@@ -137,17 +141,8 @@ public class Board {
 
         //Check if Player has won the Field
 
-        if(getPositionByCoordinates(position.getX() +1 , position.getY()).isOwnCell(activePlayer) && getPositionByCoordinates(position.getX() +2 , position.getY()).isOwnCell(activePlayer)) {
-            getFieldByCoordinates(activeFieldX,activeFieldY).setUsed(activePlayer);
-        }
 
-        if(getPositionByCoordinates(position.getX() , position.getY() + 2).isOwnCell(activePlayer) && getPositionByCoordinates(position.getX(), position.getY()+2).isOwnCell(activePlayer)) {
-            getFieldByCoordinates(activeFieldX,activeFieldY).setUsed(activePlayer);
-        }
 
-        if(getPositionByCoordinates(position.getX() +1, position.getY() + 1).isOwnCell(activePlayer) && getPositionByCoordinates(position.getX() +2 , position.getY()+2).isOwnCell(activePlayer)) {
-            getFieldByCoordinates(activeFieldX,activeFieldY).setUsed(activePlayer);
-        }
 
     }
 
@@ -187,6 +182,70 @@ public class Board {
     }
 
 
+    public int getActivePlayer() {
+        return activePlayer;
+    }
+
+    //TODO CREATE FUNCTION IF GAME IS WON
+    public int checkStatus() {
+
+        boolean boardFull = true;
+
+        for(int j = 0; j < 3; j++) {
+            boolean rowFull = true;
+            boolean columnFull = true;
+            Field symbolRow = getFieldByCoordinates(0,j), symbolColumn = getFieldByCoordinates(j,0);
+            for(int i = 0; i < 3; i++)
+            {
+                rowFull &= getFieldByCoordinates(i,j) == symbolRow;
+                columnFull &= getFieldByCoordinates(j,i) == symbolColumn;
+                boardFull &= getFieldByCoordinates(i,j) != null;
+            }
+            if(rowFull && symbolRow != null) return activePlayer;
+            if(columnFull && symbolColumn != null) return activePlayer;
+        }
+        //Check diagonals
+        boolean diagonal1Full = true;
+        boolean diagonal2Full = true;
+        Field symbol1 = getFieldByCoordinates(0,0), symbol2 = getFieldByCoordinates(0+2,0);
+        for(int i = 0; i < 3; i++)
+        {
+            diagonal1Full &= getFieldByCoordinates(i,i) == symbol1;
+            diagonal2Full &= getFieldByCoordinates(2-i,i) == symbol2;
+        }
+        if(diagonal1Full && symbol1 != null) return activePlayer;
+        if(diagonal2Full && symbol2 != null) return activePlayer;
+
+        if(boardFull) return 0;
+        return 0;
+    }
+
+    public void setFields(ArrayList<Field> fields) {
+        this.fields = fields;
+    }
+
+    public void setActiveFieldX(int activeFieldX) {
+        this.activeFieldX = activeFieldX;
+    }
+
+    public void setActiveFieldY(int activeFieldY) {
+        this.activeFieldY = activeFieldY;
+    }
+
+    public void setActivePlayer(int activePlayer) {
+        this.activePlayer = activePlayer;
+    }
+
+    public int getActiveFieldX() {
+        return activeFieldX;
+    }
 
 
+    public int getActiveFieldY() {
+        return activeFieldY;
+    }
+
+    public ArrayList<Field> getFields() {
+        return fields;
+    }
 }

@@ -20,7 +20,7 @@ public class Node {
     }
 
     public Node(State state) {
-        state = new State();
+        this.state = new State();
         children = new ArrayList<>();
     }
 

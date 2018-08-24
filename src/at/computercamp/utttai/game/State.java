@@ -18,26 +18,31 @@ public class State {
     }
 
     public State(Board board) {
-        this.board = new Board(board);
+        this.board = new Board();
+        this.board.setPositions(board.getPositions());
+        this.board.setActiveFieldX(board.getActiveFieldX());
+        this.board.setActiveFieldY(board.getActiveFieldY());
+        this.board.setPositions(board.getPositions());
+        this.board.setActivePlayer(board.getActivePlayer());
     }
 
-    Board getBoard(){
+    public Board getBoard(){
         return board;
     }
 
-    void setBoard(Board board){
+     public void setBoard(Board board){
         this.board = board;
     }
 
-    int getPlayerNo() {
+    public int getPlayerNo() {
         return playerNo;
     }
 
-    void setPlayerNo(int playerNo) {
+    public void setPlayerNo(int playerNo) {
         this.playerNo = playerNo;
     }
 
-    int getOpponent() {
+    public int getOpponent() {
         return 3 - playerNo;
     }
 
@@ -53,40 +58,50 @@ public class State {
         return winScore;
     }
 
-    void setWinScore(double winScore) {
+    public void setWinScore(double winScore) {
         this.winScore = winScore;
     }
 
-    void plusVisit() {
+    public void plusVisit() {
         this.visitCount++;
     }
 
-    void addScore(double score) {
+    public void addScore(double score) {
         if (this.winScore != Integer.MIN_VALUE)
             this.winScore += score;
     }
 
-    void togglePlayer() {
+    public void togglePlayer() {
         this.playerNo = 3 - this.playerNo;
     }
 
     public List<State> getAllPossibleStates(){
         List<State> possibleStates = new ArrayList<>();
-        List<Position> availablePositions = this.board.getAvailablePositions();
+        List<Position> availablePositions = this.board.getAviablePositions();
+
+        //TODO: use method giving possible positions according to rules
         availablePositions.forEach(p -> {
+            System.out.println(p.getX());
+            System.out.println(p.getY());
+            System.out.println("\n");
             State newState = new State(this.board);
             newState.setPlayerNo(3 - this.playerNo);
-            newState.getBoard().move(newState.getPlayerNo(), p);
+            //newState.getBoard().move(newState.getPlayerNo(), p);
             possibleStates.add(newState);
         });
         return possibleStates;
     }
 
 
-    void randomPlay() {
-        List<Position> availablePositions = this.board.getEmptyPositions();
+    public void randomPlay() {
+        List<Position> availablePositions = this.board.getAviablePositions();
+        for(Position position : availablePositions) {
+            System.out.println("X:" + position.getX() + " Y:"+position.getY());
+        }
         int totalPossibilities = availablePositions.size();
-        int selectRandom = (int) (Math.random() * totalPossibilities);
-        this.board.move(playerNo, availablePositions.get(selectRandom));
+
+        int selectRandom = (int) (Math.random() * ((totalPossibilities - 1) + 1));
+
+        //this.board.move(this.board.getActivePlayer(), availablePositions.get(0));
     }
 }

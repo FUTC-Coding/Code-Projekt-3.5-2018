@@ -92,6 +92,7 @@ public class Protocol {
         System.out.println("Test");
     }
 
+
     public byte[] getMoveMessageByte(byte x, byte y) {
         int i = 0;
         byte[] moveMessage = new byte[4];
