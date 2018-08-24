@@ -1,7 +1,6 @@
 package at.computercamp.utttai.game;
 
 import at.computercamp.utttai.networking.Protocol;
-import javafx.geometry.Pos;
 
 import java.util.*;
 
@@ -86,7 +85,7 @@ public class Board {
         return empty;
     }
 
-    public ArrayList<Position> getAviablePositions() {
+    public ArrayList<Position> getAvailablePositions() {
         ArrayList<Position> aviable = new ArrayList<>();
         if(activeFieldX == 3 && activeFieldY == 3) {
             for (Position position : positions) {
